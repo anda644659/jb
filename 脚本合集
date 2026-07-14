@@ -1,0 +1,240 @@
+-- ===== 加载 WindUI =====
+if not WindUI then
+    local success, err = pcall(function()
+        WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
+    end)
+    if not success then
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "错误",
+            Text = "WindUI 加载失败: " .. tostring(err),
+            Duration = 5
+        })
+        return
+    end
+end
+
+-- ===== 创建主窗口（黑色主题，白色字体，密码：蒸饺） =====
+local Window = WindUI:CreateWindow({
+    Title = "脚本中心合集",
+    Icon = "zap",
+    Theme = "Dark",
+    KeySystem = {
+        Key = {"蒸饺"},
+        SaveKey = false
+    }
+})
+
+-- ===== Tab1：脚本列表 =====
+local MainTab = Window:Tab({
+    Title = "脚本列表",
+    Icon = "code"
+})
+
+-- 按钮1：皮脚本
+MainTab:Button({
+    Title = "皮脚本",
+    Callback = function()
+        getgenv().XiaoPi = "皮脚本QQ群1002100032"
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/QQ1002100032-Roblox-Pi-script.lua"))()
+    end
+})
+
+-- 按钮2：叶脚本
+MainTab:Button({
+    Title = "叶脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/roblox-ye/QQ515966991/refs/heads/main/ROBLOX-CNVIP-XIAOYE.lua"))()
+    end
+})
+
+-- 按钮3：BS脚本
+MainTab:Button({
+    Title = "BS脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://gitee.com/BS_script/script/raw/master/BS_Script.Luau"))()
+    end
+})
+
+-- 按钮4：情云脚本
+MainTab:Button({
+    Title = "情云脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ChinaQY/-/main/%E6%83%85%E4%BA%91"))()
+    end
+})
+
+-- 按钮5：Aero栽赃脚本卡密（Yisan）
+MainTab:Button({
+    Title = "Aero栽赃脚本卡密（Yisan）",
+    Callback = function()
+        getgenv().SCRIPT_KEY = "Yisan"
+        loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/d975bd4e6385076888cb440390a8a53d8763b5e17f23f15a66516cd2f87974f7/download"))()
+    end
+})
+
+-- 按钮6：窗脚本（卡密：何意味）
+MainTab:Button({
+    Title = "窗脚本（卡密：何意味）",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/pl11451481mvcxz/-3-/refs/heads/main/%E7%AA%97%E8%84%9A%E6%9C%AC%E5%8A%A0%E8%BD%BD%E5%99%A8"))()
+    end
+})
+
+-- ===== Tab2：LC脚本 =====
+local LCTab = Window:Tab({
+    Title = "LC脚本",
+    Icon = "terminal"
+})
+
+-- 按钮1：lc合集
+LCTab:Button({
+    Title = "lc合集",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/SpHM7OAK/raw"))()
+    end
+})
+
+-- 按钮2：lcNEX脚本
+LCTab:Button({
+    Title = "lcNEX脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/6bd5c94e9da68dce4a2bdf5abd1f6fb9a1379f41faaadbc0354b98d543066f58/download"))()
+    end
+})
+
+-- ===== Tab3：死铁轨 =====
+local DeadTab = Window:Tab({
+    Title = "死铁轨",
+    Icon = "alert-triangle"
+})
+
+-- 按钮：死铁轨本熊脚本
+DeadTab:Button({
+    Title = "死铁轨本熊脚本",
+    Callback = function()
+        loadstring(game:HttpGet(('https://raw.%s/%s/%s'):format('githubusercontent.com','jbu7666gvv/BHBUO/refs/heads/main','loader')))()
+    end
+})
+
+-- ===== Tab4：内脏与黑火药 =====
+local OrganTab = Window:Tab({
+    Title = "内脏与黑火药",
+    Icon = "flame"
+})
+
+-- 按钮：skin阉割版
+OrganTab:Button({
+    Title = "skin阉割版",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/wzhxll/2/refs/heads/main/%E9%98%89%E5%89%B2%E7%89%88.lua"))()
+    end
+})
+
+-- ===== Tab5：tsb =====
+local TSBtab = Window:Tab({
+    Title = "tsb",
+    Icon = "target"
+})
+
+-- 按钮1：侧闪脚本
+TSBtab:Button({
+    Title = "侧闪脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.getpolsec.com/scripts/hosted/94a29c6b88bfe8c49ea221eaa9225398790c1b7436b0f08caf7517c3002e8782.lua"))()
+    end
+})
+
+-- 按钮2：tsb中心脚本
+TSBtab:Button({
+    Title = "tsb中心脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ATrainz/Phantasm/refs/heads/main/Games/TSB.lua"))()
+    end
+})
+
+-- 按钮3：dovi中心（自己解卡）
+TSBtab:Button({
+    Title = "dovi中心（自己解卡）",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/needanewphone32-eng/tsbfiles/refs/heads/main/Main1.lua"))()
+    end
+})
+
+-- 按钮4：隐身脚本
+TSBtab:Button({
+    Title = "隐身脚本",
+    Callback = function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/The-Strongest-Battlegrounds-SION-ELTNAM-ATLASIA-61168"))()
+    end
+})
+
+-- ===== Tab6：doors =====
+local DoorsTab = Window:Tab({
+    Title = "doors",
+    Icon = "door-open"
+})
+
+-- 按钮1：Abysall Hub脚本（免卡）
+DoorsTab:Button({
+    Title = "Abysall Hub脚本（免卡）",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/XxwanhexxX/doors-zh/refs/heads/main/Abysall.Hub"))()
+    end
+})
+
+-- 按钮2：ms脚本（最强绕过，功能最多，要解卡）
+DoorsTab:Button({
+    Title = "ms脚本（最强绕过，功能最多，要解卡）",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/002c19202c9946e6047b0c6e0ad51f84.lua"))()
+    end
+})
+
+-- ===== Tab7：暴力区 =====
+local ViolenceTab = Window:Tab({
+    Title = "暴力区",
+    Icon = "zap"
+})
+
+-- 按钮：暴力区
+ViolenceTab:Button({
+    Title = "暴力区",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Pandu-Hub12/rosblox/refs/heads/main/violence"))()
+    end
+})
+
+-- ===== Tab8：evade =====
+local EvadeTab = Window:Tab({
+    Title = "evade",
+    Icon = "shield"
+})
+
+-- 按钮：evade
+EvadeTab:Button({
+    Title = "evade",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/sccv8/Whakizashix/refs/heads/main/old%20whakizashi.txt"))()
+    end
+})
+
+-- ===== Tab9：被遗弃（新增） =====
+local AbandonedTab = Window:Tab({
+    Title = "被遗弃",
+    Icon = "trash"   -- 图标可自定义
+})
+
+-- 按钮：被遗弃（最强绕过）
+AbandonedTab:Button({
+    Title = "被遗弃（最强绕过）",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/aibabylaugh/catsaken-real-script-not-assets/refs/heads/main/obfuscated-1448974601077002340.lua"))()
+    end
+})
+
+-- ===== 启动提示 =====
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "脚本中心",
+    Text = "已加载，密码：蒸饺",
+    Duration = 3
+})
