@@ -1,0 +1,221 @@
+--by星际汉化
+local Translations = {
+   --["这里填要替换的英文"] = "这里填中文",
+    ["Toggle"] = "开启",
+    ["Lock"] = "锁定",
+    ["Fixsaken V3"] = "Fixsaken V3",
+    ["Search"] = "搜索",
+    ["Main"] = "主页",
+    ["Misc"] = "杂项",
+    ["Guest 1337"] = "访客1337",
+    ["Two Time"] = "两次",
+    ["Chance"] = "机会",
+    ["Assist"] = "法师(我也不知道叫啥）",
+    ["Action"] = "动作",
+    ["UI Settings"] = "界面设置",
+    ["Survivor"] = "幸存者",
+    ["Enable Elliot"] = "开启披萨自瞄",
+    ["Elliot Target Mode"] = "目标模式",
+    ["Low HP"] = "低血量",
+    ["Elliot Smoothness"] = "平滑度",
+    ["Laser"] = "激光",
+    ["Protect"] = "保护",
+    ["Enable Laser Aim"] = "开启激光自瞄",
+    ["Prediction (s)"] = "预测(秒)",
+    ["Aim Height Offset"] = "瞄准高度偏移",
+    ["Backstab"] = "背刺",
+    ["Dashstab"] = "快速瞬移到身边攻击",
+    ["Settings"] = "设置",
+    ["Enable Dashstab"] = "开启冲刺背刺",
+    ["Behind Distance"] = "身后距离",
+    ["Trigger Delay"] = "触发延迟",
+    ["Duration"] = "持续时间",
+    ["Smoothness"] = "平滑度",
+    ["Enable Backstab"] = "开启背刺",
+    ["Coin"] = "硬币",
+    ["Auto Flip Coin"] = "自动抛机会硬币",
+    ["Auto Stop"] = "自动停止",
+    ["Interval"] = "间隔",
+    ["Auto Stop Level"] = "自动停止等级",
+    ["Trajectory Visualization"] = "轨迹可视化",
+    ["Enable Trajectory"] = "开启轨迹",
+    ["Color"] = "颜色",
+    ["Transparency"] = "透明度",
+    ["One Shot"] = "一击秒杀(我也不确定）",
+    ["Enable Aimbot"] = "开启自瞄",
+    ["Distance"] = "距离",
+    ["Aim Mode"] = "瞄准模式",
+    ["Camera"] = "相机",
+    ["Auto Block"] = "自动格挡",
+    ["Enable AutoBlock"] = "开启自动格挡",
+    ["Hitbox Color"] = "碰撞盒颜色",
+    ["Block Mode"] = "格挡模式",
+    ["Hitbox Settings"] = "碰撞盒设置",
+    ["Size"] = "大小",
+    ["Offset [Z]"] = "Z轴偏移",
+    ["Punch"] = "拳击",
+    ["Auto Punch"] = "自动拳击",
+    ["Punch Aim"] = "拳击瞄准",
+    ["Punch Track"] = "拳击追踪",
+    ["Expand"] = "扩展",
+    ["Show Hidden Stats"] = "显示隐藏属性",
+    ["Disable Killer Walls"] = "禁用杀手墙体",
+    ["Visibility"] = "可见性",
+    ["Show Chat Box"] = "显示聊天框",
+    ["Version: 10854 [Latest]"] = "星际出品汉化",
+    ["Player Info"] = "玩家信息",
+    ["ESP"] = "透视",
+    ["Max Stamina"] = "最大耐力",
+    ["Stamina Gain"] = "耐力恢复",
+    ["Stamina Loss"] = "耐力消耗",
+    ["Free Zoom"] = "自由缩放",
+    ["Camera Noclip"] = "相机穿墙",
+    ["Brightness"] = "亮度",
+    ["No Shadows"] = "关闭阴影",
+    ["No Fog"] = "关闭雾效",
+    ["Infinite Stamina"] = "无限耐力",
+    ["Modify Max Stamina"] = "修改最大耐力",
+    ["Modify Stamina Gain"] = "修改耐力恢复",
+    ["Modify Stamina Loss"] = "修改耐力消耗",
+    ["Enable Fullbright"] = "开启全亮",
+    ["Killer ESP"] = "杀手透视",
+    ["Generator ESP"] = "发电机透视",
+    ["Item ESP"] = "物品透视",
+    ["Pizza ESP"] = "披萨透视",
+    ["Pizza Delivery ESP"] = "披萨配送透视",
+    ["Zombie ESP"] = "僵尸透视",
+    ["Tripwire ESP"] = "绊线透视",
+    ["Tripmine ESP"] = "地雷透视",
+    ["Respawn ESP"] = "重生点透视",
+    ["Graffiti ESP"] = "涂鸦透视",
+    ["Mission Folders ESP"] = "任务文件夹透视",
+    ["Ground Bulb ESP"] = "地面灯泡透视",
+    ["Vine ESP"] = "藤蔓透视",
+    ["Generator"] = "发电机",
+    ["Item"] = "物品",
+    ["Pizza"] = "披萨",
+    ["Pizza Delivery"] = "披萨配送",
+    ["Zombie"] = "僵尸",
+    ["Tripwire"] = "绊线",
+    ["Tripmine"] = "地雷",
+    ["Respawn"] = "重生点",
+    ["Graffiti"] = "涂鸦",
+    ["Folders"] = "文件夹",
+    ["Ground Bulb"] = "地面灯泡",
+    ["Vine"] = "藤蔓"
+}
+
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    
+    if Translations[text] then
+        return Translations[text]
+    end
+    
+    for en, cn in pairs(Translations) do
+        if text:find(en) then
+            return text:gsub(en, cn)
+        end
+    end
+    
+    return text
+end
+
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        
+        setreadonly(getrawmetatable(game), true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败:", err)
+       
+        local translated = {}
+        local function scanAndTranslate()
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                    pcall(function()
+                        local text = gui.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                gui.Text = translatedText
+                                translated[gui] = true
+                            end
+                        end
+                    end)
+                end
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                        pcall(function()
+                            local text = gui.Text
+                            if text and text ~= "" then
+                                local translatedText = translateText(text)
+                                if translatedText ~= text then
+                                    gui.Text = translatedText
+                                    translated[gui] = true
+                                end
+                            end
+                        end)
+                    end
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.wait(0.1)
+                    pcall(function()
+                        local text = descendant.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                descendant.Text = translatedText
+                            end
+                        end
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        
+        while true do
+            scanAndTranslate()
+            task.wait(3)
+        end
+    end
+end
+
+task.wait(2)
+
+setupTranslationEngine()
+
+local success, err = pcall(function()
+--这下面填加载外部脚本
+loadstring(game:HttpGet("https://raw.githubusercontent.com/FixFox550/FixFox/refs/heads/main/FixHubAlpha"))()
+
+
+end)
+
+if not success then
+    warn("加载失败:", err)
+end
